@@ -10,7 +10,7 @@ const parse = data => {
   const $ = cheerio.load(data);
   
   const start = new Date('2023-01-01').getTime();
-  const end = new Date('2023-03-24').getTime();
+  const end = new Date('2023-03-30').getTime();
   const randomTimestamp = start + Math.random() * (end - start);
   const date = new Date(randomTimestamp).toISOString().split('T')[0];
 

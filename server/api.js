@@ -2,7 +2,8 @@ const cors = require('cors');
 const express = require('express');
 const helmet = require('helmet');
 const { MongoClient, ObjectId } = require('mongodb');
-const MONGODB_URI = 'mongodb+srv://lucas:123@cluster0.ihowrxt.mongodb.net/?retryWrites=true&writeConcern=majority';
+const MONGODB_URI = "mongodb+srv://test:1590@cluster0.jjwqaye.mongodb.net/?retryWrites=true&w=majority"
+//const MONGODB_URI = 'mongodb+srv://lucas:123@cluster0.ihowrxt.mongodb.net/?retryWrites=true&writeConcern=majority';
 const MONGODB_DB_NAME = 'clearfashion';
 
 const PORT = 8092;
@@ -26,7 +27,7 @@ app.listen(PORT);
 console.log(`📡 Running on port ${PORT}`);
 
 app.get('/products/search', async (req, res) => {
-  const show = parseInt(req.query.show) || 12;
+  const show = parseInt(req.query.show) || 24;
   const page = parseInt(req.query.page) || 1;
   const brand = req.query.brand;
   const price = req.query.price;

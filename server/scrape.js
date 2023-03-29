@@ -1,8 +1,8 @@
 /* eslint-disable no-console, no-process-exit */
 const dedicatedbrand = require('./eshops/dedicatedbrand');
-const circlesportswear = require('./eshops/circlesportswear');
-const montlimart = require('./eshops/montlimart');
-//const
+const circlesportswear = require('./eshops/circlesport');
+const montlimart = require('./eshops/montlimar');
+// const
 const fs = require('fs');
 
 async function scrape (eshop) {

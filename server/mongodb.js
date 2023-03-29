@@ -153,7 +153,7 @@ async function main() {
     const db = client.db(MONGODB_DB_NAME);
 
     try {
-        const data = fs.readFileSync('products_montlimart.json');
+        const data = fs.readFileSync('products.json');
         const products = JSON.parse(data);
 
         await insertProducts(db, products);
@@ -165,7 +165,7 @@ async function main() {
 }
 
 main();
-""""""""""""""/*
+/*
 const brand = 'Montlimart';
 
 async function findProductsByBrand(db, brand) {
