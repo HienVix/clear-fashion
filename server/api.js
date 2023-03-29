@@ -1,6 +1,9 @@
 const cors = require('cors');
 const express = require('express');
 const helmet = require('helmet');
+const { MongoClient, ObjectId } = require('mongodb');
+const MONGODB_URI = 'mongodb+srv://lucas:123@cluster0.ihowrxt.mongodb.net/?retryWrites=true&writeConcern=majority';
+const MONGODB_DB_NAME = 'clearfashion';
 
 const PORT = 8092;
 
@@ -21,3 +24,91 @@ app.get('/', (request, response) => {
 app.listen(PORT);
 
 console.log(`📡 Running on port ${PORT}`);
+
+app.get('/products/search', async (req, res) => {
+  const show = parseInt(req.query.show) || 12;
+  const page = parseInt(req.query.page) || 1;
+  const brand = req.query.brand;
+  const price = req.query.price;
+  const days = parseInt(req.query.days);
+  const sort =  'Choose';
+
+  const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+  const db = client.db(MONGODB_DB_NAME);
+  const collection = db.collection('products');
+
+  let filter = {};
+  if (brand) {
+    filter.brand = brand;
+  }
+  if (price) {
+    filter.price = { $lte: parseInt(price) };
+  }
+  if (days) {
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - days);
+    const cutoffDateString = cutoffDate.toISOString().slice(0, 10);
+    filter.date = { $gte: cutoffDateString };
+  }
+
+  let sortOptions = {};
+  if (sort === 'Choose') {
+	sortOptions.date = 1;  
+  } 
+  else if (sort === 'Cheapest') {
+    sortOptions.price.date = 1;
+  }
+  else if (sort === 'Most expensive') {
+    sortOptions.price = -1;
+  } else if (sort === 'Most recent') {
+    sortOptions.date = -1;
+  } else if (sort === 'Oldest') {
+    sortOptions.date = 1;
+  }
+
+
+  const count = await collection.countDocuments(filter);
+  const totalPages = Math.ceil(count / show);
+  const skip = (page - 1) * show;
+
+  const result = await collection.find(filter).sort(sortOptions).skip(skip).limit(show).toArray();
+
+  res.json({
+    currentPage: page,
+    totalPages: totalPages,
+    totalCount: count,
+    data: result
+  });
+});
+
+app.get('/products/:id', async (req, res) => {
+  const productId = req.params.id;
+
+  const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+  const db = client.db(MONGODB_DB_NAME);
+  const collection = db.collection('products');
+
+  const result = await collection.find({ _id: ObjectId(productId) }).toArray();
+
+  res.json(result);
+});
+
+app.get('/products', async (req, res) => {
+  const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+  const db = client.db(MONGODB_DB_NAME);
+  const collection = db.collection('products');
+
+  const result = await collection.find({}).toArray();
+
+  res.json(result);
+});
+
+app.get('/brands', async (req, res) => {
+  const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+  const db = client.db(MONGODB_DB_NAME);
+  const collection = db.collection('products');
+
+  const result = await collection.distinct('brand');
+
+  res.json(result);
+});

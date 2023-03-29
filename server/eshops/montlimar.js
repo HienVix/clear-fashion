@@ -14,26 +14,25 @@ const parse = data => {
   const randomTimestamp = start + Math.random() * (end - start);
   const date = new Date(randomTimestamp).toISOString().split('T')[0];
 
-  return $('.productList-container .productList')
+  return $('.products-list .products-list__block.products-list__block--grid')
     .map((i, element) => {
       const name = $(element)
-        .find('.productList-title')
+        .find('.text-reset')
         .text()
         .trim()
         .replace(/\s/g, ' ');
       const price = parseInt(
         $(element)
-          .find('.productList-price')
+          .find('.price')
           .text()
       );
       if (isNaN(price)) {
         return null; // skip this element if price is NaN
       }
-      const brand = 'Dedicated';
-      let url = $(element)
-        .find('.productList-link')
+      const brand = 'Montlimart';
+      const url = $(element)
+        .find('.product-miniature__thumb-link')
         .attr('href');
-        url = 'https://www.dedicatedbrand.com'.concat(url);
       const photo = $(element)
         .find('img')
         .attr('data-src');

@@ -1,0 +1,7 @@
+Pour soumettre sur Github: merci Hugo <3
+
+PS C:\Users\lealu\OneDrive\Documents\ESILV\A4\Semestre 2\Web Application Architecture> cd .\clear-fashion\
+PS C:\Users\lealu\OneDrive\Documents\ESILV\A4\Semestre 2\Web Application Architecture\clear-fashion> git add .
+PS C:\Users\lealu\OneDrive\Documents\ESILV\A4\Semestre 2\Web Application Architecture\clear-fashion> git commit -m "Commit TD1"
+PS C:\Users\lealu\OneDrive\Documents\ESILV\A4\Semestre 2\Web Application Architecture\clear-fashion> git push 
+
