@@ -31,8 +31,8 @@ app.get('/products/search', async (req, res) => {
   const brand = req.query.brand;
   const price = req.query.price;
   const days = parseInt(req.query.days);
-  const sort =  'Choose';
-
+  const sort = req.query.sort || 'Cheapest';
+c
   const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
   const db = client.db(MONGODB_DB_NAME);
   const collection = db.collection('products');
