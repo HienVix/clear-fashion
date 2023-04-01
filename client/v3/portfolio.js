@@ -36,9 +36,10 @@ const sectionFavoriteProducts = document.querySelector('#favoriteProducts');
  */
  //https://clear-fashion-ashen-six.vercel.app/
 //https://clear-fashion-1-two.vercel.app/
+// https://clear-fashion-lb65.vercel.app/
 const fetchProducts = async (show, page, brand, price, days, sort) => {
   try {
-    let url = `https://clear-fashion-1-two.vercel.app/products/search?show=${show}&page=${page}`; //modify 
+    let url = `https://clear-fashion-lb65.vercel.app/products/search?show=${show}&page=${page}`; //modify 
     if (brand && brand != 'No') {
       url += `&brand=${brand}`;
     }
@@ -74,7 +75,7 @@ const fetchProducts = async (show, page, brand, price, days, sort) => {
 const fetchAllProducts = async () => {
   try {
     const response = await fetch(
-      `https://clear-fashion-1-two.vercel.app/products` //same
+      `https://clear-fashion-lb65.vercel.app/products` //same
     );
     const body = await response.json();
     return body;
@@ -87,7 +88,7 @@ const fetchAllProducts = async () => {
 const fetchBrands = async () => {
   try {
     const response = await fetch(
-      `https://clear-fashion-1-two.vercel.app/brands` // m
+      `https://clear-fashion-lb65.vercel.app/brands` // m
     );
     const body = await response.json();
     return body;
