@@ -1,5 +1,6 @@
 // Invoking strict mode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#invoking_strict_mode
 'use strict';
+//inspired by lucas artaud
 
 // current products on the page
 let currentProducts = [];
@@ -34,9 +35,7 @@ const sectionFavoriteProducts = document.querySelector('#favoriteProducts');
 /**
  * Fetch API
  */
- //https://clear-fashion-ashen-six.vercel.app/
-//https://clear-fashion-1-two.vercel.app/
-// https://clear-fashion-lb65.vercel.app/
+
 const fetchProducts = async (show, page, brand, price, days, sort) => {
   try {
     let url = `https://clear-fashion-lb65.vercel.app/products/search?show=${show}&page=${page}`; //modify 
