@@ -51,14 +51,10 @@ c
     filter.date = { $gte: cutoffDateString };
   }
 
-  let sortOptions = {};
-  if (sort === 'Choose') {
-	sortOptions.date = 1;  
-  } 
-  else if (sort === 'Cheapest') {
-    sortOptions.price.date = 1;
-  }
-  else if (sort === 'Most expensive') {
+   let sortOptions = {};
+  if (sort === 'Cheapest') {
+    sortOptions.price = 1;
+  } else if (sort === 'Most expensive') {
     sortOptions.price = -1;
   } else if (sort === 'Most recent') {
     sortOptions.date = -1;
