@@ -1,6 +1,6 @@
 // Invoking strict mode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#invoking_strict_mode
 'use strict';
-
+//inpired by lucas artaud
 // current products on the page
 let currentProducts = [];
 let show = 24;
@@ -8,7 +8,7 @@ let page = 1;
 let brand = 'No';
 let price = 'No';
 let days = 'No';
-let sort = 'Choose';
+let sort = 'Most recent';
 let favorite_products = [];
 const current_date = Date.now();
 
@@ -34,9 +34,8 @@ const sectionFavoriteProducts = document.querySelector('#favoriteProducts');
 /**
  * Fetch API
  */
- //https://clear-fashion-ashen-six.vercel.app/
-//https://clear-fashion-1-two.vercel.app/
-// https://clear-fashion-lb65.vercel.app/
+ //
+
 const fetchProducts = async (show, page, brand, price, days, sort) => {
   try {
     let url = `https://clear-fashion-lb65.vercel.app/products/search?show=${show}&page=${page}`; //modify 
@@ -75,7 +74,7 @@ const fetchProducts = async (show, page, brand, price, days, sort) => {
 const fetchAllProducts = async () => {
   try {
     const response = await fetch(
-      `https://clear-fashion-lb65.vercel.app/products` //same
+      `https://clear-fashion-lb65.vercel.app/products`
     );
     const body = await response.json();
     return body;
@@ -116,10 +115,10 @@ async function changeFavorite(id) {
 function textFavorite(id) {
   let text = "";
   if (favorite_products.find(element => element._id === id)) {
-    text = "Remove favorite";
+    text = "Dislike";
   }
   else {
-    text = "Add favorite";
+    text = "Like";
   }
   return text;
 }
@@ -261,3 +260,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   spanPercentile95.innerHTML = Math.round(quantile(prices, 0.95));
   spanLastReleasedDate.innerHTML = lastReleasedDate.toLocaleDateString();
 });
+
+// add a style menu to make it more like a website selling clothes 
+const optionsSection = document.querySelector('#options');
+
+const fakeMenu = document.createElement('div');
+fakeMenu.textContent = ' ';
+
+optionsSection.parentNode.insertBefore(fakeMenu, optionsSection);

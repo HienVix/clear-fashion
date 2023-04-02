@@ -9,7 +9,7 @@ background-color: #f7f7f7;
 }
 
 h1 {
-color: #008080;
+color: #ff9999;
 text-align: center;
 font-size: 3rem;
 font-weight: bold;
@@ -100,3 +100,19 @@ color: #777;
 text-align: center;
 }
 
+button {
+  background-color: #ffcccc;
+  color: white;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1;
+  transition: all 0.3s ease;
+}
+
+/* Add heart icon */
+button::before {
+  content: "\2661";
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1;
+}
