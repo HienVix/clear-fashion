@@ -115,10 +115,10 @@ async function changeFavorite(id) {
 function textFavorite(id) {
   let text = "";
   if (favorite_products.find(element => element._id === id)) {
-    text = "Remove favorite";
+    text = "Dislike";
   }
   else {
-    text = "Add favorite";
+    text = "Like";
   }
   return text;
 }
@@ -260,3 +260,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   spanPercentile95.innerHTML = Math.round(quantile(prices, 0.95));
   spanLastReleasedDate.innerHTML = lastReleasedDate.toLocaleDateString();
 });
+
+// select the section element with id "options"
+const optionsSection = document.querySelector('#options');
+
+// create a new div element for the fake menu
+const menu = document.createElement('div');
+menu.textContent = ' ';
+
+// insert the fake menu before the options section
+optionsSection.parentNode.insertBefore(menu, optionsSection);
